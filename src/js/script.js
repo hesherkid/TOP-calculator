@@ -1,4 +1,3 @@
-//DOM elements
 const numberButton = document.querySelector('.number');
 const operatorButton = document.querySelector('.operator');
 const clearButton = document.querySelector('.clear');
@@ -11,11 +10,6 @@ const equalsButton = document.querySelector('.equals-key');
 currentOperand.textContent = '';
 previousOperand.textContent = '';
 
-//Your calculator is going to contain functions for all of the basic math operators you typically find on calculators, so start by creating functions for the following items and testing them in your browser’s console.
-// add
-// subtract
-// multiply
-// divide
 function add(a, b) {
 	return a + b;
 };
@@ -56,4 +50,23 @@ let firstNumber = '';
 let storedNumber = '';
 let clickedOperator = '';
 let result = '';
+
+numberButton.forEach((number) => {
+    number.addEventListener('click', function() {
+        storedNumber += number.value;
+        currentOperand.textContent = storedNumber;
+    })
+});
+
+operatorButton.forEach((operator => {
+    operator.addEventListener('click', function() {
+        firstNumber = storedNumber;
+        clickedOperator = operator.textContent;
+        previousOperand.textContent = storedNumber + clickedOperator;
+        storedNumber = '';
+
+        console.log('FirstNumber' + firstNumber + 'Stored' + storedNumber)
+        console.log(clickedOperator);
+    })
+}));
 
